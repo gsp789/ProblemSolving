@@ -3,59 +3,42 @@
 
 using namespace std;
 
-vector<vector<int> > generateMatrix(int A) {
+vector<vector<int> > Solution::generateMatrix(int A) {
 
     vector< vector<int> > spiral (A, vector<int> (A,0));
     
     enum Direction { LeftToRight, TopToBottom, RightToLeft, BottomToTop };
     Direction d = LeftToRight;
     
-    int row = 0, col = 0, counter = 1;
+    int currentrow = 0, currentcol = -1, counter = 1, loop = 1;
     
     while (counter <= (A * A))
     {
-        spiral[row][col] = counter++;
         switch(d)
-        {
-            case LeftToRight:   col++;
-                                if(col == A || spiral[row][col] != 0)
-                                {
-                                    d = TopToBottom;
-                                    col--;
-                                    row++;
-                                }
-                                break;
-                                
-            case TopToBottom:   row++;
-                                if(row == A || spiral[row][col] != 0)
-                                {
-                                    d = RightToLeft;
-                                    row--;
-                                    col--;
-                                }
-                                break;
-            
-            case RightToLeft:   col--;
-                                if(col < 0 || spiral[row][col] != 0)
-                                {
-                                    d = BottomToTop;
-                                    col++;
-                                    row--;
-                                }
-                                break;
-            
-            case BottomToTop:   row--;
-                                if(row < 0 || spiral[row][col] != 0)
-                                {
-                                    d = LeftToRight;
-                                    row++;
-                                    col++;
-                                }
-                                break;
-                            
-            default : break;
-            
-        }
+	    {
+	        case LeftToRight:   currentcol++;
+	                            if(currentcol == A - loop)
+	                                d = TopToBottom;
+	                            break;
+	                            
+	        case TopToBottom:   currentrow++;
+	                            if(currentrow == A - loop)
+	                                d = RightToLeft;
+	                            break;
+	                            
+	        case RightToLeft:   currentcol--;
+	                            if(currentcol == loop - 1)
+	                                d = BottomToTop;
+	                            break;
+	        case BottomToTop:   currentrow--;
+	                            if(currentrow == loop)
+	                            {
+	                                loop++;
+	                                d = LeftToRight;
+	                            }
+	        
+	    }
+	    spiral[currentrow][currentcol] = counter++;
     }
     return spiral;
 }
