@@ -56,3 +56,20 @@ void main()
 	}
 	cout << repeatedNumber(A);
 }
+
+/* 
+
+ 1 <= A[i] <= (length - 1)
+
+Testcase 1:
+5
+3 4 1 4 1
+
+Output: 4 or 1(can display either of them)
+
+Testcase 2:
+7
+3 1 4 2 5 6 5
+
+Output: 5 
+*/
