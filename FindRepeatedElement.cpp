@@ -1,3 +1,4 @@
+//Elements ranging from 0 to N - 1
 #include <iostream>
 #include <vector>
 
@@ -6,6 +7,7 @@ inline int min(int a, int b)
 {
 	return a > b ? b : a;
 }
+
 int repeatedNumber(const vector<int> &A) {
 	
     int length = A.size();
